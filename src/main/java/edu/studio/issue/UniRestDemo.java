@@ -48,7 +48,7 @@ public class UniRestDemo {
         }
     }
 
-    public String userInputForCredentials() throws NullPointerException {
+    public String userInput() throws NullPointerException {
 
         try {
             sc1 = new Scanner(System.in);

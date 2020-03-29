@@ -12,7 +12,7 @@ class IssueTest {
        issue1.setId(12345);
        Issue issue2 = new Issue();
        issue2.setId(12345);
-       assertEquals(issue1.equals(issue2));
+       assertTrue(issue1.equals(issue2));
     }
 
 }
