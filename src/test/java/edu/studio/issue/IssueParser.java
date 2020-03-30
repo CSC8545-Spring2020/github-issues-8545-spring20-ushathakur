@@ -29,7 +29,7 @@ public class IssueParser {
         Type collectionType = new TypeToken<List<Issue>>(){}.getType();
         issues = gson.fromJson(jsonContent, collectionType); 
        
-        System.out.println(issues);
+        //System.out.println(issues);
         return issues;
     }
 

@@ -25,21 +25,24 @@ class IssueParserTest {
         String sampleJson = Files.readString(
                 Paths.get("C:\\Users\\thaku\\Documents\\sample-output.txt"));
         List<Issue> mainIssues = ipobj.issueParser(sampleJson);
+        Collections.sort(mainIssues);
         assertEquals(4, mainIssues.size());
         Issue issue1 = mainIssues.get(0);
 
         assertEquals("randomissue", issue1.getTitle());
     }
 
-    // Collections.sort(mainIssues);
+ 
     // System.out.println(mainIssues);
     @Test
     void testOrderGivenStatus() throws IOException {
         String sampleJson = Files.readString(
                 Paths.get("C:\\Users\\thaku\\Documents\\sample-output.txt"));
         List<Issue> mainIssues = ipobj.issueParser(sampleJson);
+        Collections.sort(mainIssues);
+        System.out.println(mainIssues);
         Issue issue4 = mainIssues.get(3);
-        assertEquals("closed", issue4.getState());
+        assertEquals("open", issue4.getState());
 
     }
 
