@@ -35,7 +35,7 @@ class IssueParserTest {
  
     // System.out.println(mainIssues);
     @Test
-    void testOrderGivenStatus() throws IOException {
+    void testOrderOfTheListGivenStatus() throws IOException {
         String sampleJson = Files.readString(
                 Paths.get("C:\\Users\\thaku\\Documents\\sample-output.txt"));
         List<Issue> mainIssues = ipobj.issueParser(sampleJson);

@@ -7,6 +7,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Collections;
 
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
@@ -14,6 +15,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
 public class IssueParser {
+    List<Issue> issues;
     public static void main(String[] args) throws IOException {
         IssueParser a = new IssueParser();
         String sampleJson = Files.readString(Paths.get("C:\\Users\\thaku\\Documents\\sample-output.txt"));
@@ -25,10 +27,10 @@ public class IssueParser {
                 .setDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'")
                 .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES) 
                 .create(); 
-        List<Issue> issues = new ArrayList<Issue>(); 
+        issues = new ArrayList<Issue>(); 
         Type collectionType = new TypeToken<List<Issue>>(){}.getType();
         issues = gson.fromJson(jsonContent, collectionType); 
-       
+       Collections.sort(issues);
         //System.out.println(issues);
         return issues;
     }

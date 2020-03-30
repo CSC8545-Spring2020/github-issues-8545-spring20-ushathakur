@@ -21,6 +21,7 @@ class IssueTest {
     @Test
     void testGettersAndSettersGivenTitle() {
         issue1.setTitle("this is a bug");
+        issue1.setTitle("this is a bug");
         assertEquals("this is a bug", issue1.getTitle());
     }
     @Test
