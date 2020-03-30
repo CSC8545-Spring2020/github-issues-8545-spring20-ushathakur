@@ -22,7 +22,8 @@ class IssueParserTest {
     void testIssueParserGivenJson() throws IOException {
        String sampleJson = Files.readString(Paths.get("C:\\Users\\thaku\\Documents\\sample-output.txt"));
         List<Issue> mainIssues = ipobj.issueParser(sampleJson);
-        assertEquals(3, mainIssues.size() );
+        assertEquals(4, mainIssues.size() );
+        Issue
         
        //assertEquals(randomissue, mainIssues.get(0));
         
