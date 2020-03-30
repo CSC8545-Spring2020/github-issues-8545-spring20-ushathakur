@@ -33,7 +33,7 @@ public static void main(String [] args) throws FileNotFoundException, NullPointe
          String userName = s[0];
          String password = s[1];
           jsonresponse = Unirest.get(URL).basicAuth(userName,password).asString().getBody();
-         System.out.println(jsonresponse);
+        // System.out.println(jsonresponse);
         
      }
      catch (FileNotFoundException | NullPointerException npe) {
