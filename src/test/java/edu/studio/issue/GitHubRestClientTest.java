@@ -19,9 +19,9 @@ class GitHubRestClientTest {
     void testGivenJsonFileWhenProvidedCredentials() throws IOException {
       
       
-        String URL = "https://api.github.com/repos/CSC8545-Spring2020/github-issues-8545-spring20-ushathakur/issues";
+        //String URL = "https://api.github.com/repos/CSC8545-Spring2020/github-issues-8545-spring20-ushathakur/issues?state=all";
         GitHubRestClient GitHubclient = new GitHubRestClient();
-        UniRestDemo urdobj = new UniRestDemo();
+        //UniRestDemo urdobj = new UniRestDemo();
         String expectedJson = Files.readString(Paths.get("C:\\Users\\thaku\\Documents\\sample-output.txt"));
         String actualJson = GitHubclient.auth();
                 assertEquals(expectedJson, actualJson);

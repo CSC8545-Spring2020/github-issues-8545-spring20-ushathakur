@@ -1,12 +1,35 @@
 package edu.studio.issue;
 
+
+import java.io.IOException;
+import java.lang.reflect.Type;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 
-public class IssueParser {
+import com.google.gson.FieldNamingPolicy;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 
-    public List<String> issueParser(String sampleJson) {
-        // TODO Auto-generated method stub
-        return null;
+public class IssueParser {
+    public static void main(String[] args) throws IOException {
+        IssueParser a = new IssueParser();
+        String sampleJson = Files.readString(Paths.get("C:\\Users\\thaku\\Documents\\sample-output.txt"));
+        a.issueParser(sampleJson);
+    }
+
+    public List<Issue> issueParser(String jsonContent) {
+        Gson gson = new GsonBuilder() 
+                .setDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'")
+                .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES) 
+                .create(); 
+        List<Issue> issues = new ArrayList<Issue>(); 
+        Type collectionType = new TypeToken<List<Issue>>(){}.getType();
+        issues = gson.fromJson(jsonContent, collectionType); 
+        System.out.println(issues);
+        return issues;
     }
 
 

@@ -17,7 +17,7 @@ public class UniRestDemo {
         UniRestDemo x = new UniRestDemo();
         file = new File("C:\\Users\\thaku\\Documents\\cred.txt");
         x.auth(file);
-        System.out.println(x.userName + " " + x.password);
+       // System.out.println(x.userName + " " + x.password);
         x.userInput();
 
     }
@@ -48,7 +48,7 @@ public class UniRestDemo {
         }
     }
 
-    public String userInput() throws NullPointerException {
+    public void userInput() throws NullPointerException {
 
         try {
             sc1 = new Scanner(System.in);
@@ -64,17 +64,17 @@ public class UniRestDemo {
                 if (login.isEmpty()) {
                     System.out.println(
                             "bad credentials, please enter your credentials again");
-                    valid = false;
+                    valid = false;}
                     String responseBody = Unirest.get(
-                            "https://api.github.com/repos/CSC8545-Spring2020/github-issues-8545-spring20-ushathakur/issues")
+                            "https://api.github.com/repos/CSC8545-Spring2020/github-issues-8545-spring20-ushathakur/issues?state=all")
                             .basicAuth(login, pass).asString().getBody();
                     System.out.println(responseBody);
-                    return responseBody;
-                }
+                    //return responseBody;
+                }while (!valid);
 
-            } while (!valid);
+            } 
 
-        }
+        
         catch (NullPointerException npe) {
             System.out.println(
                     "bad credentials, please enter your credentials again");
