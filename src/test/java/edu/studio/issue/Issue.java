@@ -2,7 +2,7 @@ package edu.studio.issue;
 
 import java.util.Date;
 
-public class Issue {
+public class Issue implements Comparable<Issue> {
     private long id;
     private int number;
     private String state;
@@ -117,6 +117,16 @@ public class Issue {
     }
     public void setClosedAt(Date closedAt) {
         this.closedAt = closedAt;
+    }
+    @Override
+    public int compareTo(Issue o) {
+        if(this.id == o.id) 
+            return 0;
+        if (this.id > o.id) 
+            return 1;
+        if (this.id < o.id)
+            return -1;
+        return 0;
     }
     
     
