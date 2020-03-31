@@ -1,13 +1,21 @@
 package edu.studio.issue;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.List;
+
+import kong.unirest.Unirest;
 
 public class IssueExporter {
 
+    
+    
     public static void main(String[] args) {
-        commandLineInputForCredentials(args);
-
+     
+//        IssueExporter ref = new IssueExporter();
+//        ref.validateCredentials(args);
+//        // commandLineInputForCredentials(login);
+//        jsonExporter(login)
     }
     private List<Issue> orderedIssues;
     private String extractedJson;
@@ -22,7 +30,7 @@ public String[] validateCredentials(String[] args) {
         }
         else
             return args;
-            //System.out.println(login.userName+login.password);
+        
         return args;
       }
 public Login commandLineInputForCredentials(String[] args) {
@@ -33,14 +41,21 @@ public Login commandLineInputForCredentials(String[] args) {
 }
 
 
-public String jsonExporter(Login login) {
+public String jsonExporter(Login login) throws FileNotFoundException, NullPointerException {
     GitHubRestClient restClient = new GitHubRestClient();
-    restClient.authorizeGitHubCredentialsAndExtractJSon(args);
+//     final String URL = "https://api.github.com/repos/CSC8545-Spring2020/github-issues-8545-spring20-ushathakur/issues?state=all";
+//    String jsonresponse = Unirest.get(URL).basicAuth(login.userName, login.password).asString().getBody();
+//    return jsonresponse;
+  //this.login = login;
+    extractedJson=  restClient.authorizeGitHubCredentialsAndExtractJSon(login);
     return extractedJson;
 }
 public List<Issue> obtainIssueObjects(String extractedJson) {
-    // TODO Auto-generated method stub
+   IssueParser parser = new IssueParser();
+   orderedIssues = parser.issueParser(extractedJson);
     return orderedIssues;
 }
-
+public void exportOrderedIssues(List<Issue> orderedIssues) {
+    
+}
 }

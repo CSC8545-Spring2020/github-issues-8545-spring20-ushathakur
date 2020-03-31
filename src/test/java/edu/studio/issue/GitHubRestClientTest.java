@@ -26,9 +26,12 @@ class GitHubRestClientTest {
         String s[] = line.split(" ", 2);
         String userName = s[0];
         String password = s[1];
+        Login login = new Login();
+        login.userName = userName;
+        login.password = password;
         GitHubRestClient GitHubclient = new GitHubRestClient();
         String expectedJson = Files.readString(Paths.get("C:\\Users\\thaku\\Documents\\sample-output.txt"));
-        String actualJson = GitHubclient.authorizeGitHubCredentialsAndExtractJSon(s);
+        String actualJson = GitHubclient.authorizeGitHubCredentialsAndExtractJSon(login);
                 assertEquals(expectedJson, actualJson);
         
        
