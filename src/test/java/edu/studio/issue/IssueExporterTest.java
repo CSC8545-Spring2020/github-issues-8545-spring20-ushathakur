@@ -1,21 +1,24 @@
 package edu.studio.issue;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
 class IssueExporterTest {
     IssueExporter ieobj = new IssueExporter();
     
+    @SuppressWarnings("deprecation")
     @Test
     void givenInvalidcredentialsThenPromtUserToEnterValidCred() {
-        IssueExporter ieobj = new IssueExporter();
-        assertEquals("bad credentials, please enter your credentials again and re-run the program", ieobj.validateCredentials("",""));
+      
+        String[] a = {"someone", "something"};
+        assertEquals(a, ieobj.validateCredentials(a));
        
     }
 
@@ -32,9 +35,14 @@ void testJsonExporterWhenValidCredentials() throws IOException {
 }
 
 @Test
-void testIssueParserReturnsIssueObjectsGivenJsonString() {
+void testIssueParserReturnsIssueObjectsGivenJsonString() throws IOException {
     IssueParser ipobj = new IssueParser();
-    assertEquals(ipobj.issues, ieobj.obtainIssueObjects() );
+    String sampleJson = Files.readString(
+            Paths.get("C:\\Users\\thaku\\Documents\\sample-output.txt"));
+    List<Issue> mainIssues = ipobj.issueParser(sampleJson);
+
+    //System.out.println(ipobj.issues);
+    assertEquals(mainIssues, ieobj.obtainIssueObjects() );
    
 }
 @Test

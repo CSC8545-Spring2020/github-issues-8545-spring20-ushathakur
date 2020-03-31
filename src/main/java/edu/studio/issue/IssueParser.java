@@ -15,11 +15,12 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
 public class IssueParser {
-    List<Issue> issues;
+    public List<Issue> issues;
     public static void main(String[] args) throws IOException {
         IssueParser a = new IssueParser();
         String sampleJson = Files.readString(Paths.get("C:\\Users\\thaku\\Documents\\sample-output.txt"));
         a.issueParser(sampleJson);
+        System.out.println(a.issues);
     }
 
     public List<Issue> issueParser(String jsonContent) {
@@ -27,12 +28,12 @@ public class IssueParser {
                 .setDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'")
                 .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES) 
                 .create(); 
-        issues = new ArrayList<Issue>(); 
+        this.issues = new ArrayList<Issue>(); 
         Type collectionType = new TypeToken<List<Issue>>(){}.getType();
-        issues = gson.fromJson(jsonContent, collectionType); 
-       Collections.sort(issues);
-        //System.out.println(issues);
-        return issues;
+       this.issues = gson.fromJson(jsonContent, collectionType); 
+       Collections.sort(this.issues);
+     
+        return this.issues;
     }
 
 

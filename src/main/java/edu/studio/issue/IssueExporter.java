@@ -6,27 +6,39 @@ import java.util.List;
 public class IssueExporter {
 
     public static void main(String[] args) {
-        // TODO Auto-generated method stub
+        commandLineInputForCredentials(args);
 
     }
     private List<Issue> orderedIssues;
     private String extractedJson;
     public File outputFile;
-public void commandLineInputForCredentials(String[] args) {
+   
+    
+public String[] validateCredentials(String[] args) {
+        if((args == null) || (args.length==0)) {
+            System.out.println("bad credentials, please enter your credentials again and re-run the program");
+            //System.exit(0);
+           // return "bad credentials, please enter your credentials again and re-run the program";
+        }
+        else
+            return args;
+            //System.out.println(login.userName+login.password);
+        return args;
+      }
+public Login commandLineInputForCredentials(String[] args) {
    Login login = new Login();
     login.userName = args[0];
     login.password = args[1];
-}
-public Object validateCredentials(String string, String string2) {
-    // TODO Auto-generated method stub
-    return null;
+    return login;
 }
 
+
 public String jsonExporter(Login login) {
-    // TODO Auto-generated method stub
+    GitHubRestClient restClient = new GitHubRestClient();
+    restClient.authorizeGitHubCredentialsAndExtractJSon(args);
     return extractedJson;
 }
-public List<Issue> obtainIssueObjects() {
+public List<Issue> obtainIssueObjects(String extractedJson) {
     // TODO Auto-generated method stub
     return orderedIssues;
 }
