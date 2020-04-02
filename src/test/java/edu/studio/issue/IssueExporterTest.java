@@ -56,7 +56,7 @@ void testIssueParserReturnsIssueObjectsGivenJsonString() throws IOException {
    
 }
 @Test
-void testIssueExporterExportsToOutputFile() {
-    assertTrue(ieobj.outputFile.length()!=0);
+void testIssueExporterExportsOrderedListToOutputFile() {
+    Assert.assertTrue((ieobj.file.length())==0);//before executing the whole program.
 }
 }

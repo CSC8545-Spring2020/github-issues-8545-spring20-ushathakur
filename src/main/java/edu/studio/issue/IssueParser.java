@@ -16,12 +16,7 @@ import com.google.gson.reflect.TypeToken;
 
 public class IssueParser {
     //public List<Issue> issues;
-    public static void main(String[] args) throws IOException {
-        IssueParser a = new IssueParser();
-        String sampleJson = Files.readString(Paths.get("C:\\Users\\thaku\\Documents\\sample-output.txt"));
-        List<Issue> returnedIssues=  a.issueParser(sampleJson);
-       System.out.println(returnedIssues);
-    }
+
 
     public List<Issue> issueParser(String jsonContent) {
         Gson gson = new GsonBuilder() 

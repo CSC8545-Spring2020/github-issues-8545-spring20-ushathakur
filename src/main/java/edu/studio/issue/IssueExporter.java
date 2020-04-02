@@ -2,6 +2,8 @@ package edu.studio.issue;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.List;
 
 import kong.unirest.Unirest;
@@ -20,6 +22,7 @@ public class IssueExporter {
     private List<Issue> orderedIssues;
     private String extractedJson;
     public File outputFile;
+        public File file = new File("src/main/resources/actual-issues.txt");
    
     
 public String[] validateCredentials(String[] args) {
@@ -55,7 +58,15 @@ public List<Issue> obtainIssueObjects(String extractedJson) {
    orderedIssues = parser.issueParser(extractedJson);
     return orderedIssues;
 }
-public void exportOrderedIssues(List<Issue> orderedIssues) {
-    
+public void exportOrderedIssues(List<Issue> orderedIssues) throws IOException {
+    File file = new File("src/main/resources/actual-issues.txt");
+    FileWriter writer = new FileWriter(file);
+    int size = orderedIssues.size();
+    for(int i=0;i<=size;i++) {
+        String getData = orderedIssues.get(i).toString();
+        writer.write(getData);
+        //System.out.println(getData);
+    }
+    writer.close();
 }
 }
