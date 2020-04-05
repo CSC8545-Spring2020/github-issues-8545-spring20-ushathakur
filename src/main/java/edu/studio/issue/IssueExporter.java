@@ -37,7 +37,7 @@ public class IssueExporter {
             Login login = commandLineInputForCredentials(args);
             extractedJson = jsonExporter(login);
             orderedIssues = obtainIssueObjects(extractedJson);
-            exportOrderedIssues(orderedIssues);
+            exportOrderedIssuesToAFile(orderedIssues);
         }
         catch (NullPointerException | IOException npe) {
             System.out.println();
@@ -50,9 +50,7 @@ public class IssueExporter {
         if ((args == null) || (args.length != 2)) {
             System.out.println(
                     "bad credentials, please enter your credentials again and re-run the program");
-            // System.exit(0);
-            // return "bad credentials, please enter your credentials again and
-            // re-run the program";
+            
         }
         if (((args.length) == 2) && (args != null)) {
             return args;
@@ -75,17 +73,22 @@ public class IssueExporter {
         GitHubRestClient restClient = new GitHubRestClient();
         extractedJson = restClient
                 .authorizeGitHubCredentialsAndExtractJson(login);
-        System.out.println(extractedJson);
+       
+       if(extractedJson.startsWith("{\"message\":\"Bad credentials")) {
+            System.out.println(extractedJson);
+            System.out.println("enter correct credentials and re-run the program");
+            System.exit(0);
+        }
         return extractedJson;
     }
 
-    public List<Issue> obtainIssueObjects(String extractedJson) {
+    public List<Issue> obtainIssueObjects(String extractedJson){
         IssueParser parser = new IssueParser();
         orderedIssues = parser.issueParser(extractedJson);
         return orderedIssues;
     }
 
-    public void exportOrderedIssues(List<Issue> orderedIssues)
+    public void exportOrderedIssuesToAFile(List<Issue> orderedIssues)
             throws IOException, ArrayIndexOutOfBoundsException {
         File file = new File("src/main/resources/actual-issues.txt");
         FileWriter writer = new FileWriter(file);
@@ -93,8 +96,9 @@ public class IssueExporter {
         System.out.println(size);
         for (int i = 0; i < size; i++) {
             String getData = orderedIssues.get(i).toString();
-            writer.write(getData);
             System.out.println(getData);
+            writer.write(getData);
+            
         }
         writer.close();
     }
