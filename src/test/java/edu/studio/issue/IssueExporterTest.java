@@ -12,15 +12,14 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 class IssueExporterTest {
-    IssueExporter ieobj = new IssueExporter();
+    IssueExporter exporter = new IssueExporter();
     Login login = new Login();
 
-    @SuppressWarnings("deprecation")
     @Test
-    void givenInvalidcredentialsThenPromtUserToEnterValidCred() {
+    void givenInvalidcredentialsThenPromptUserToEnterValidCred() {
 
         String[] a = { "someone", "something" };
-        assertEquals(a, ieobj.validateCredentials(a));
+        assertEquals(a, exporter.validateCredentials(a));
 
     }
 
@@ -42,23 +41,23 @@ class IssueExporterTest {
         login.userName = userName;
         login.password = password;
 
-        assertEquals(expectedJson, ieobj.jsonExporter(login));
+        assertEquals(expectedJson, exporter.jsonExporter(login));
     }
 
     @Test
     void testIssueParserReturnsIssueObjectsGivenJsonString()
             throws IOException {
-        IssueParser ipobj = new IssueParser();
+        IssueParser parser = new IssueParser();
         String sampleJson = Files.readString(
                 Paths.get("C:\\Users\\thaku\\Documents\\sample-output.txt"));
-        List<Issue> mainIssues = ipobj.issueParser(sampleJson);
-        assertEquals(mainIssues, ieobj.obtainIssueObjects(sampleJson));
+        List<Issue> mainIssues = parser.issueParser(sampleJson);
+        assertEquals(mainIssues, exporter.obtainIssueObjects(sampleJson));
 
     }
 
     @Test
     void testIssueExporterExportsOrderedListToOutputFile() {
-        assertTrue((ieobj.file.length()) != 0); // before executing the program
+        assertTrue((exporter.file.length()) != 0); // before executing the program
 
     }
 }

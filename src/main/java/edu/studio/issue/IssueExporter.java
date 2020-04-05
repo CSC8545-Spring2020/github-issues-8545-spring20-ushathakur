@@ -18,8 +18,8 @@ public class IssueExporter {
     public static void main(String[] args) throws NullPointerException,
             IOException, ArrayIndexOutOfBoundsException {
         try {
-            IssueExporter ref = new IssueExporter();
-            ref.functionCalls(args);
+            IssueExporter issueExporter = new IssueExporter();
+            issueExporter.takeInputHitLiveUrlExportIssues(args);
         }
 
         catch (NullPointerException | IOException
@@ -30,7 +30,7 @@ public class IssueExporter {
         }
     }
 
-    public void functionCalls(String[] args)
+    public void takeInputHitLiveUrlExportIssues(String[] args)
             throws NullPointerException, IOException {
         try {
             args = validateCredentials(args);

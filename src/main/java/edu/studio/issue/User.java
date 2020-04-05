@@ -1,9 +1,5 @@
 package edu.studio.issue;
 
-import java.util.Scanner;
-
-import kong.unirest.Unirest;
-
 public class User implements Comparable<User> {
     private String login;
     private long id;

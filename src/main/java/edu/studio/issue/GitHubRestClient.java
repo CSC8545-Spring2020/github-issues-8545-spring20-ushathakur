@@ -1,9 +1,6 @@
 package edu.studio.issue;
 
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.Scanner;
-
 import kong.unirest.Unirest;
 
 public class GitHubRestClient {
