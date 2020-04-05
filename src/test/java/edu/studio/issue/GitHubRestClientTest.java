@@ -15,14 +15,17 @@ import kong.unirest.Unirest;
 
 class GitHubRestClientTest {
     GitHubRestClient xyz = new GitHubRestClient();
+
     @Test
     void testGivenJsonFileWhenProvidedCredentials() throws IOException {
-      
-        Scanner  sc = new Scanner(new File("C:\\Users\\thaku\\Documents\\cred.txt"));
+
+        Scanner sc = new Scanner(
+                new File("C:\\Users\\thaku\\Documents\\cred.txt"));
         String line = null;
         while (sc.hasNext()) {
             line = sc.nextLine();
         }
+        sc.close();
         String s[] = line.split(" ", 2);
         String userName = s[0];
         String password = s[1];
@@ -30,11 +33,12 @@ class GitHubRestClientTest {
         login.userName = userName;
         login.password = password;
         GitHubRestClient GitHubclient = new GitHubRestClient();
-        String expectedJson = Files.readString(Paths.get("C:\\Users\\thaku\\Documents\\sample-output.txt"));
-        String actualJson = GitHubclient.authorizeGitHubCredentialsAndExtractJSon(login);
-                assertEquals(expectedJson, actualJson);
-        
-       
+        String expectedJson = Files.readString(
+                Paths.get("C:\\Users\\thaku\\Documents\\sample-output.txt"));
+        String actualJson = GitHubclient
+                .authorizeGitHubCredentialsAndExtractJson(login);
+        assertEquals(expectedJson, actualJson);
+
     }
 
 }

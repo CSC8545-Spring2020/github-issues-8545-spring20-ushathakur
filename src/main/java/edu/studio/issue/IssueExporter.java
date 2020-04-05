@@ -6,6 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 
+import jdk.jfr.StackTrace;
 import kong.unirest.Unirest;
 
 public class IssueExporter {
@@ -14,12 +15,19 @@ public class IssueExporter {
     public File outputFile;
     public File file = new File("src/main/resources/actual-issues.txt");
 
-    public static void main(String[] args)
-            throws NullPointerException, IOException {
+    public static void main(String[] args) throws NullPointerException,
+            IOException, ArrayIndexOutOfBoundsException {
+        try {
+            IssueExporter ref = new IssueExporter();
+            ref.functionCalls(args);
+        }
 
-        IssueExporter ref = new IssueExporter();
-        ref.functionCalls(args);
-
+        catch (NullPointerException | IOException
+                | ArrayIndexOutOfBoundsException npe) {
+            System.out.println(
+                    "bad credentials, please enter your credentials again and re-run the program");
+            System.out.println(npe);
+        }
     }
 
     public void functionCalls(String[] args)
@@ -39,7 +47,7 @@ public class IssueExporter {
     }
 
     public String[] validateCredentials(String[] args) {
-        if ((args == null) || (args.length == 0)) {
+        if ((args == null) || (args.length != 2)) {
             System.out.println(
                     "bad credentials, please enter your credentials again and re-run the program");
             // System.exit(0);
@@ -49,7 +57,7 @@ public class IssueExporter {
         if (((args.length) == 2) && (args != null)) {
             return args;
         }
-        
+
         else {
             return args;
         }
@@ -65,15 +73,9 @@ public class IssueExporter {
     public String jsonExporter(Login login)
             throws FileNotFoundException, NullPointerException {
         GitHubRestClient restClient = new GitHubRestClient();
-        // final String URL =
-        // "https://api.github.com/repos/CSC8545-Spring2020/github-issues-8545-spring20-ushathakur/issues?state=all";
-        // String jsonresponse = Unirest.get(URL).basicAuth(login.userName,
-        // login.password).asString().getBody();
-        // return jsonresponse;
-        // this.login = login;
         extractedJson = restClient
-                .authorizeGitHubCredentialsAndExtractJSon(login);
-        //System.out.println(extractedJson);
+                .authorizeGitHubCredentialsAndExtractJson(login);
+        System.out.println(extractedJson);
         return extractedJson;
     }
 
@@ -84,7 +86,7 @@ public class IssueExporter {
     }
 
     public void exportOrderedIssues(List<Issue> orderedIssues)
-            throws IOException {
+            throws IOException, ArrayIndexOutOfBoundsException {
         File file = new File("src/main/resources/actual-issues.txt");
         FileWriter writer = new FileWriter(file);
         int size = orderedIssues.size();

@@ -13,12 +13,9 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 class IssueParserTest {
-    // @BeforeAll
-    // void setUp() {
+
     IssueParser ipobj = new IssueParser();
     GitHubRestClient ghrcObj = new GitHubRestClient();
-
-    // }
 
     @Test
     void testIssueParserGivenJson() throws IOException {
@@ -32,8 +29,7 @@ class IssueParserTest {
         assertEquals("randomissue", issue1.getTitle());
     }
 
- 
-    // System.out.println(mainIssues);
+  
     @Test
     void testOrderOfTheListGivenStatus() throws IOException {
         String sampleJson = Files.readString(

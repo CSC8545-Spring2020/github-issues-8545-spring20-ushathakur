@@ -10,7 +10,6 @@ public class Issue implements Comparable<Issue> {
     private String body;
     private Date createdAt;
     User user, assignee;
-    
 
     @Override
     public String toString() {

@@ -10,7 +10,7 @@ public class GitHubRestClient {
     String jsonresponse;
     public final String URL = "https://api.github.com/repos/CSC8545-Spring2020/github-issues-8545-spring20-ushathakur/issues?state=all";
 
-    public String authorizeGitHubCredentialsAndExtractJSon(Login login)
+    public String authorizeGitHubCredentialsAndExtractJson(Login login)
             throws FileNotFoundException, NullPointerException {
 
         jsonresponse = Unirest.get(URL)
