@@ -1,8 +1,6 @@
 package edu.studio.issue;
 
 
-import static org.junit.Assert.assertEquals;
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -10,7 +8,8 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.Scanner;
 
-import org.junit.Assert;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 class IssueExporterTest {
@@ -22,7 +21,7 @@ class IssueExporterTest {
     void givenInvalidcredentialsThenPromtUserToEnterValidCred() {
       
         String[] a = {"someone", "something"};
-        Assert.assertEquals(a, ieobj.validateCredentials(a));
+       assertEquals(a, ieobj.validateCredentials(a));
        
     }
 
@@ -43,7 +42,7 @@ void testJsonExporterWhenValidCredentials() throws IOException {
     login.userName = userName;
     login.password = password;
 
-    Assert.assertEquals(expectedJson, ieobj.jsonExporter(login));
+  assertEquals(expectedJson, ieobj.jsonExporter(login));
 }
 
 @Test
@@ -52,11 +51,11 @@ void testIssueParserReturnsIssueObjectsGivenJsonString() throws IOException {
     String sampleJson = Files.readString(
             Paths.get("C:\\Users\\thaku\\Documents\\sample-output.txt"));
     List<Issue> mainIssues = ipobj.issueParser(sampleJson);
-    Assert.assertEquals(mainIssues, ieobj.obtainIssueObjects(sampleJson));
+    assertEquals(mainIssues, ieobj.obtainIssueObjects(sampleJson));
    
 }
 @Test
 void testIssueExporterExportsOrderedListToOutputFile() {
-    Assert.assertTrue((ieobj.file.length())==0);//before executing the whole program.
+    assertTrue((ieobj.file.length())==0);//before executing the whole program.
 }
 }

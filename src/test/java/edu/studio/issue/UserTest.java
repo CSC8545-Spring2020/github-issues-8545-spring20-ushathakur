@@ -1,11 +1,8 @@
 package edu.studio.issue;
 
 import static org.junit.jupiter.api.Assertions.*;
-
-import java.io.File;
-import java.util.Scanner;
-
-import org.junit.Before;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 class UserTest {

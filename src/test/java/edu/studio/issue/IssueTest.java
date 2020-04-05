@@ -1,7 +1,9 @@
 package edu.studio.issue;
 
-import static org.junit.Assert.assertTrue;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import  org.junit.jupiter.api.Assertions;
 
 import org.junit.jupiter.api.Test;
 
@@ -20,7 +22,6 @@ class IssueTest {
     }
     @Test
     void testGettersAndSettersGivenTitle() {
-        issue1.setTitle("this is a bug");
         issue1.setTitle("this is a bug");
         assertEquals("this is a bug", issue1.getTitle());
     }
