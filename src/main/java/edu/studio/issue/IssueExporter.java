@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.List;
 
 import jdk.jfr.StackTrace;
@@ -24,9 +25,10 @@ public class IssueExporter {
 
         catch (NullPointerException | IOException
                 | ArrayIndexOutOfBoundsException npe) {
+            System.out.println(npe);
             System.out.println(
                     "bad credentials, please enter your credentials again and re-run the program");
-            System.out.println(npe);
+            
         }
     }
 
@@ -40,7 +42,8 @@ public class IssueExporter {
             exportOrderedIssuesToAFile(orderedIssues);
         }
         catch (NullPointerException | IOException npe) {
-            System.out.println();
+            System.out.println(npe);
+            npe.printStackTrace();
 
         }
 
@@ -90,14 +93,16 @@ public class IssueExporter {
 
     public void exportOrderedIssuesToAFile(List<Issue> orderedIssues)
             throws IOException, ArrayIndexOutOfBoundsException {
-        File file = new File("src/main/resources/actual-issues.txt");
+        //ClassLoader classLoader = ;
+        File file = new File ("actual-issues.txt");
         FileWriter writer = new FileWriter(file);
         int size = orderedIssues.size();
-        System.out.println(size);
+        System.out.println("number of issues:" +size);
         for (int i = 0; i < size; i++) {
             String getData = orderedIssues.get(i).toString();
-            System.out.println(getData);
             writer.write(getData);
+            System.out.println(getData);
+           
             
         }
         writer.close();
